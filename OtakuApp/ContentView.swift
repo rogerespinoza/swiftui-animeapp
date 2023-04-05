@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var animesVM = AnimesVM()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack {
+            List(animesVM.animes) { anime in
+                AnimeCell(anime: anime)
+            }
+            .navigationTitle("Animes")
         }
-        .padding()
     }
 }
 
@@ -24,3 +26,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
